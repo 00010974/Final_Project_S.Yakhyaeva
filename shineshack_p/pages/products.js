@@ -1,3 +1,4 @@
+//password mangodb atlas k7XVrWMyWqh$jqJ mail sbyakhyaeva@gmail.com/sabrina290103@gmail.com
 import Link from 'next/link';
 import Layout from "@/components/Layout";
 
