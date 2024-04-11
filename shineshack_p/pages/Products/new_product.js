@@ -10,7 +10,7 @@ export default function newProduct(){
         ev.preventDefault();
         const data = {title, desctiption, price};
         // to create a product we need to send a post request to the api so i use an axios
-        await axios.post('/api/products', )
+        await axios.post('/api/products', data);
     }
     return(
         <Layout>
