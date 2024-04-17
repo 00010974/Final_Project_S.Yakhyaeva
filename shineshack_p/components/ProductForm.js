@@ -30,14 +30,18 @@ export default function ProductForm({_id, title:exsistingTitle, description:exsi
         const files = ev.target?.files;
         if (files?.length > 0) {
             const data = new FormData();
-                files.forEach(file => data.append('file', file));
-                const res = await axios.post('/api/upload', data);
-                console.log(res.data);
+            for (const file of files){
+                data.append('file', file);
+            }
+            const res = await fetch('/api/upload',{
+                method: 'POST',
+                body: data,
+            })
+            console.log(res);
         }
     }
     return(
             <form onSubmit={saveProduct}>
-                
                 <label>Product Name</label>
                 <input type="text" placeholder="product name" value={title} onChange={ev => setTitle(ev.target.value)}/>
                 <label>
