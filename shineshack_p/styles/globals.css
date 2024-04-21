@@ -2,12 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-input, textarea{
+
+img{
+    max-height: 100%;
+}
+
+input, textarea, select{
     @apply border-2 border-gray-300 rounded-md px-2 pb-1 w-full;
     @apply mb-2;
 }
 
-input:focus, textarea:focus{
+input:focus, textarea:focus, select:focus{
     @apply border-green-700;
 }
 
@@ -50,3 +55,4 @@ table.basic a{
 .btn-default{
     @apply bg-gray-400 text-white;
 }
+
