@@ -57,6 +57,13 @@ export default function ProductForm({_id, title:exsistingTitle, description:exsi
     function updateImagesOrder(images) {
         setImages(images);
     }
+
+    const properties = [];
+    if (categories.length > 0 && category){
+        const selectCategoriesInfo = categories.find(({_id}) => _id === category);
+        console.log({selectCategoriesInfo})
+    }
+
     return(
             <form onSubmit={saveProduct}>
                 <label>Product Name</label>
@@ -68,6 +75,11 @@ export default function ProductForm({_id, title:exsistingTitle, description:exsi
                         <option value={c._id}>{c.name}</option>
                     ))}
                 </select>
+                {categories.length > 0 && (
+                    <div>
+
+                    </div>
+                )}
                 <label>
                     Photos
                 </label>
