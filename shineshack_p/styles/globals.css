@@ -53,6 +53,6 @@ table.basic a{
 }
 
 .btn-default{
-    @apply bg-gray-400 text-white;
+    @apply bg-gray-600 text-white;
 }
 

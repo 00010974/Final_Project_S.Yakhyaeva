@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 import { withSwal } from 'react-sweetalert2';
 
 
+
 function Categories({swal}) {
     const [editedCategory, setEditedCategory] = useState(null);
     const [name, setName] = useState('');
     const [parentCategory, setParentCategory] = useState('');
     const [categories, setCategories] = useState([]);
+    const [properties, setProperties] = useState([]);
 
     useEffect(() => {
         fetchCategories();
@@ -20,19 +22,20 @@ function Categories({swal}) {
          });
      }
     
-    async function saveCategory(ev){
+     async function saveCategory(ev){
         ev.preventDefault();
-        const data = {name, parentCategory};
-        if (editedCategory){
-            data._id = editedCategory._id;
-            await axios.put('/api/categories', data);
-            setEditedCategory(null);
+        const data = {name, parentCategory,properties:properties.map(p => ({name:p.name,values:p.values.split(',')})),};
+        if (editedCategory) {
+          data._id = editedCategory._id;
+          await axios.put('/api/categories', data);
+          setEditedCategory(null);
         } else {
-            await axios.post('/api/categories', data);
+          await axios.post('/api/categories', data);
         }
         setName('');
-        fetchCategories(); 
-    }
+        setParentCategory('');
+        fetchCategories();
+      }
 
     function editCategory(category){
         setEditedCategory(category);
@@ -42,60 +45,117 @@ function Categories({swal}) {
 
     function deleteCategory(category){
         swal.fire({
-            title: 'Example',
-            text: 'Hello World',
-            didOpen: () => {
-                // run when swal is opened...
-            },
-            didClose: () => {
-                // run when swal is closed...
-            }
-        }).then(result => {
-            // when confirmed and promise resolved...
-        }).catch(error => {
-            // when promise rejected...
+            title: 'Are you sure?',
+            text: `Do you want to delete ${category.name}?`,
+            showCancelButton: true,
+            cancelButtonText: 'Cancel',
+            confirmButtonText: 'Delete',
+            confirmButtonColor: '#d55',
+            reverseButtons: true,
+        }).then(async result => {
+           if(result.isConfirmed){
+                const {_id} = category;
+                await axios.delete('/api/categories?_id='+_id);
+                fetchCategories();
+            }  
+        });
+    } 
+
+    function addProperty(){
+        setProperties(prev => {
+            return [...prev, {name:'', values:''}]
         });
     }
+
+    function handlePropertyNameChange(index,property,newName){
+        setProperties(prev => {
+            const properties = [...prev];
+            properties[index].name = newName;
+            return properties;
+        });
+    }
+    function handlePropertyValuesChange(index,property,newValues){
+        setProperties(prev => {
+            const properties = [...prev];
+            properties[index].values = newValues;
+            return properties;
+        });
+    }
+
+    function removeProperty(indexToRemove) {
+        setProperties(prev => {
+            return [...prev].filter((p,pIndex) => {
+                return pIndex !== indexToRemove;
+            });
+        });
+    }
+    
 
     return(
         <Layout>
             <h1>Categories</h1>
             <label>{editedCategory ? `Edit category ${editedCategory.name}` : 'Create new category'}</label>
-            <form onSubmit={saveCategory} className="flex gap-1">
-                <input className="mb-0" type="text" placeholder="Category name" onChange={ev => setName(ev.target.value)} value={name}/>
-                <select className="mb-0" onChange={ev => setParentCategory(ev.target.value)} value={parentCategory}>
+            <form onSubmit={saveCategory}>
+            <div className="flex gap-1">
+                <input type="text" placeholder="Category name" onChange={ev => setName(ev.target.value)} value={name}/>
+                <select onChange={ev => setParentCategory(ev.target.value)} value={parentCategory}>
                     <option value={0}>No parent category</option>
                     {categories.length > 0 && categories.map(category => (
                         <option key={category._id} value={category._id}>{category.name}</option>
                     ))}
                 </select>
+            </div>
+            <div className="mb-2">
+                <label className="block">Properties</label>
+                <button onClick={addProperty} type="button" className="btn-default text-sm mb-2">Add new property</button>
+                {properties.length > 0 && properties.map((property,index) => (
+                    <div className="flex gap-1 mb-2">
+                        <input type="text" className="mb-0" value={property.name} onChange={ev => handlePropertyNameChange(index,property,ev.target.value)} placeholder="property name (example: material)"/>
+                        <input type="text" className="mb-0" onChange={ev => handlePropertyValuesChange(index,property,ev.target.value)} value={property.values} placeholder="values, comma separated"/>
+                        <button onClick={() => removeProperty(index)} type="button" className="btn-default">Remove</button>
+                    </div>
+                ))}
+            </div>
+                <div className="flex gap-1">
+                {editedCategory && (
+                    <button type="button" onClick={() => {
+                        setEditedCategory(null);
+                        setName('');
+                        setParentCategory('');
+                    }} className="btn-default">Cancel</button>
+                )}
                 <button type="submit" className="btn-primary py-1">Save</button>
+                </div>
+                
             </form>
-            <table className="basic mt-4">
-                <thead>
-                    <tr>
-                        <td>Category name</td>
-                        <td>Parent category</td>
-                        <td></td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {categories.length > 0 && categories.map(
-                        category => (
-                            <tr key={category._id}>
-                                <td>{category.name}</td>
-                                <td>{category?.parent?.name}</td>
-                                <td>
-                                    <div className="flex gap-1">
-                                        <button onClick={() => editCategory(category)} className="btn-primary">Edit</button>
-                                        <button onClick={() => deleteCategory(category)} className="btn-primary">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                        )
-                    )}
-                </tbody>
-            </table>
+            {!editCategory && (
+                 <table className="basic mt-4">
+                 <thead>
+                     <tr>
+                         <td>Category name</td>
+                         <td>Parent category</td>
+                         <td></td>
+                     </tr>
+                 </thead>
+                 <tbody>
+                     {categories.length > 0 && categories.map(
+                         category => (
+                             <tr key={category._id}>
+                                 <td>{category.name}</td>
+                                 <td>{category?.parent?.name}</td>
+                                 <td>
+                                     <div className="flex gap-1">
+                                         <button onClick={() => editCategory(category)} className="btn-primary">Edit</button>
+                                         <button onClick={() => deleteCategory(category)} className="btn-primary">Delete</button>
+                                     </div>
+                                 </td>
+                             </tr>
+                         )
+                     )}
+                 </tbody>
+             </table>
+            )}
+           
         </Layout>
     );
 }
@@ -103,3 +163,5 @@ function Categories({swal}) {
 export default withSwal(({ swal }, ref) => (
     <Categories swal={swal} />
 )); 
+
+
