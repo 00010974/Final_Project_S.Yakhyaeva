@@ -5,9 +5,9 @@ import Logo from "./Logo";
 
 export default function Nav({show}){
     const inactiveLink = 'flex gap-1 p-1';
-    const activeLink = inactiveLink+' bg-highlight text-primary rounded-l-lg';
+    const activeLink = inactiveLink+' bg-buttons text-primary rounded';
     const inactiveIcon = 'w-6 h-6';
-    const activeIcon = inactiveIcon + 'text-highlight';
+    const activeIcon = inactiveIcon;
     const router = useRouter();
     const {pathname} = router;
     async function logout(){
@@ -15,7 +15,7 @@ export default function Nav({show}){
         await signOut();
     }
     return (
-        <aside className={(show?'left-0':'-left-full')+" top-0 text-tbase p-4 fixed w-full bg-bgBase h-full md:static md:w-auto transition-all"}>
+        <aside className={(show?'left-0':'-left-full')+" top-0 text-gray-800 p-4 fixed w-full bg-bgBase h-full md:static md:w-auto transition-all"}>
             <div className="mb-4 mr-2">
                 <Logo />
             </div>

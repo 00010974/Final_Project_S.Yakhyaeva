@@ -3,8 +3,9 @@ import { useSession, signIn, signOut } from "next-auth/react"
 
 export default function Home() {
   const {data: session} = useSession();
+
   return <Layout>
-    <div className="text-green-700 flex justify-between">
+    <div className="text-buttons flex justify-between">
       <h2>
         Hello, <b>{session?.user?.name}</b>
       </h2>

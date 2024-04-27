@@ -9,9 +9,23 @@ module.exports = {
     extend: {
       colors: {
         primary: '#f5f5f5',
-        highlight: '#39492d',
-        bgBase: '#f5f5f5',
+        highlight: '#ac472d',
+        
         tbase: '#39492d',
+        greenLight: '#6f9f9d',
+        greenlightbg: '#eaf1f0',
+        greenDefault: '#286F6C',
+        
+        
+        text:'#1f1f1f',
+        textlight:'#f5f5f5',
+        cardBg:'#f5f5f5',
+        bgBase: '#e3dfde ',
+        greenDark: '#1c4f4d',
+
+        tableBg:'#ece7da',
+        buttons:'#b15147',
+        mainbg:'#e2d6c9',
       },
     },
   },
