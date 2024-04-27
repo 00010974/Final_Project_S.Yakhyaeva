@@ -9,11 +9,11 @@ module.exports = {
     extend: {
       colors: {
         primary: '#f5f5f5',
-        highlight: '#ac472d',
+        highlight: '#ac472d', //red
         
-        tbase: '#39492d',
-        greenLight: '#6f9f9d',
-        greenlightbg: '#eaf1f0',
+        tbase: '#39492d', //green
+        greenLight: '#6f9f9d', //blue/green
+        greenlightbg: '#eaf1f0', //liiiiiight green
         greenDefault: '#286F6C',
         
         

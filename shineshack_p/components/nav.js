@@ -15,7 +15,7 @@ export default function Nav({show}){
         await signOut();
     }
     return (
-        <aside className={(show?'left-0':'-left-full')+" top-0 text-gray-800 p-4 fixed w-full bg-bgBase h-full md:static md:w-auto transition-all"}>
+        <aside className={(show?'left-0':'-left-full')+" top-0 text-gray-800 p-4 fixed w-full bg-cardbg h-full md:static md:w-auto transition-all"}>
             <div className="mb-4 mr-2">
                 <Logo />
             </div>

@@ -50,7 +50,7 @@ table.basic a{
 }
 
 .btn-red{
-    @apply border-buttons text-buttons mx-20;
+    @apply border-buttons text-buttons;
 }
 
 .btn-default{
