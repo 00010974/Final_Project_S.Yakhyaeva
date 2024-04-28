@@ -1,20 +1,17 @@
-import {createGlobalStyle} from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
-const GlobalStyles = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@400,500,600,700&display=swap');
+const globalStyles = createGlobalStyle`
   body{
-    
-    padding:0;
-    margin:0;
-    font-family: 'Montserrat', sans-serif;
+    padding: 0;
+    margin: 0;
   }
 `;
 
 export default function App({ Component, pageProps }) {
-  return (
+  return(
     <>
-      <GlobalStyles />
-        <Component {...pageProps} />
+      <globalStyles />
+      <Component {...pageProps} />
     </>
   );
 }
