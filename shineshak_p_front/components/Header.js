@@ -63,7 +63,7 @@ export default function Header(){
                         <Logo  href={'/'}>Shine Shack</Logo>
                         <StyledNav>
                             <NavLink href={'/'}>Home</NavLink>
-                            <NavLink href={'/bestsellers'}>Best Sellers</NavLink>
+                            <NavLink href={'/products'}>Best Sellers</NavLink>
                             <NavLink href={'/earrings'}>EARRINGS</NavLink>
                             <NavLink href={'/rings'}>RINGS</NavLink>
                             <NavLink href={'/necklaces'}>NECKLACES</NavLink>
