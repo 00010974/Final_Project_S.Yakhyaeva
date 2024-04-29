@@ -44,7 +44,7 @@ export default function Fetured({product}){
                 <Wrapper>
                     <Column>
                         <div>
-                            <Title>WE DO FINE JEWELRY DIFFERENTLY</Title>
+                            <Title>{product.title}</Title>
                             <Desc>Because fine jewelry is an expression of self: to mean what you want, wear how you want, celebrate with when you want, and keep forever. It’s for grand moments, minor milestones, and every day in between.</Desc>
                             <ButtonsWrapper>
                                 <ButtonLink href={'/products/'+product._id}>Read more</ButtonLink>
