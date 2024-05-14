@@ -30,7 +30,7 @@ label{
 }
 
 table.basic{
-    @apply w-full bg-cardBg rounded-3xl shadow-md;
+    @apply w-full bg-cardBg rounded-3xl shadow;
 }
 
 table.basic thead tr td{
