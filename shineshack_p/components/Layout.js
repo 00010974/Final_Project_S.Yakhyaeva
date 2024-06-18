@@ -10,11 +10,20 @@ export default function Layout({children}) {
     return (
       <div className="bg-cardBg w-screen h-screen flex items-center">
         <div className="text-center w-full"> 
-        <div className='sm:mx-auto sm:w-full sm:max-w-md shadow-md'>
+        <div className='sm:mx-auto sm:w-full sm:max-w-md shadow-md p-10 rounded-md bg-white'>
             <h2 className='mt-6 text-center text-3xl font-extrabold text-gray-900 mb-5'>
                 Register as a new user 
             </h2>
-          <button onClick={() => signIn('google')} className="bg-white p-2 px-4 rounded-lg mb-5">Login with Google</button>
+            <input className="bg-white p-2 px-4 rounded-lg mb-5" type="text"
+                      placeholder="Name"
+                      name="name"
+                      onChange={ev => setName(ev.target.value)} />
+            <input className="bg-white p-2 px-4 rounded-lg mb-5" type="text"
+                      placeholder="Email"
+                      name="email"
+                      onChange={ev => setName(ev.target.value)} />
+          <button onClick={() => signIn('google')} className="bg-black text-white p-2 px-4 rounded-lg mb-5 border-gray-100 border-2 mr-5">Login</button>
+          <button onClick={() => signIn('google')} className="bg-black text-white p-2 px-4 rounded-lg mb-5 border-gray-100 border-2">Login with Google</button>
         </div>
         </div>
       </div> 

@@ -1,5 +1,6 @@
 import Layout from "@/components/Layout";
 import { useSession, signIn, signOut } from "next-auth/react"
+import Dashboard from "./dashboard/index";
 
 export default function Home() {
   const {data: session} = useSession();
@@ -16,5 +17,7 @@ export default function Home() {
         </span>
       </div>
     </div>
+
+    <Dashboard />
   </Layout>
 }

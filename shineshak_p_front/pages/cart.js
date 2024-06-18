@@ -91,6 +91,7 @@ export default function CartPage() {
       setProducts([]);
     }
   }, [cartProducts]);
+  
   useEffect(() => {
     if (typeof window === 'undefined') {
       return;
@@ -100,6 +101,7 @@ export default function CartPage() {
       clearCart();
     }
   }, []);
+
   function moreOfThisProduct(id) {
     addProduct(id);
   }

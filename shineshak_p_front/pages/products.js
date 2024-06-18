@@ -6,6 +6,7 @@ import {Product} from "@/models/Product";
 import ProductsGrid from "@/components/ProductsGrid";
 import Title from "@/components/Title";
 
+
 export default function ProductsPage({products}) {
   return (
     <>
