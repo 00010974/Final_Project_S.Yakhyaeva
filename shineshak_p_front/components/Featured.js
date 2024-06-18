@@ -2,6 +2,9 @@ import Center from "./Center";
 import styled from "styled-components";
 import StyledButton from "@/components/Button";
 import ButtonLink from "./ButtonLink";
+import Button from "@/components/Button";
+import { useContext } from "react";
+import { CartContext } from "./CartContext";
 
 
 const Bg = styled.div`
@@ -38,6 +41,10 @@ const ButtonsWrapper = styled.div`
 `;
 
 export default function Fetured({product}){
+  // const {setCartProducts} = useContext(CartContext);
+  // function addFeaturedToCart() {
+  //   setCartProducts(prev => [...prev,product._id]);
+  // }
     return(
         <Bg>
             <Center>
@@ -48,6 +55,7 @@ export default function Fetured({product}){
                             <Desc>Because fine jewelry is an expression of self: to mean what you want, wear how you want, celebrate with when you want, and keep forever. It’s for grand moments, minor milestones, and every day in between.</Desc>
                             <ButtonsWrapper>
                                 <ButtonLink href={'/products/'+product._id}>Read more</ButtonLink>
+                                {/* <Button white onClick={addFeaturedToCart} primary outline>Add to cart</Button> */}
                             </ButtonsWrapper>
                         </div>
                     </Column>

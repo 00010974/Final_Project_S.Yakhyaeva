@@ -35,10 +35,11 @@ const Title = styled(Link)`
   color:inherit;
   text-decoration:none;
   margin:0;
+  
 `;
 
 const ProductInfoBox = styled.div`
-  margin: 10px;
+  margin: 11px;
 `;
 
 const PriceRow = styled.div`
@@ -49,7 +50,7 @@ const PriceRow = styled.div`
   }
   align-items: center;
   justify-content:space-between;
-  margin-top:2px;
+  margin-top:15px;
 `;
 
 const Price = styled.div`

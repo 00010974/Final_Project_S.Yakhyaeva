@@ -9,9 +9,7 @@ export default async function handler(req,res) {
     return;
   }
   const {
-    name,email,city,
-    postalCode,streetAddress,country,
-    cartProducts,
+    name,email,city,postalCode,streetAddress,country,cartProducts,
   } = req.body;
   await mongooseConnect();
   const productsIds = cartProducts;
@@ -50,6 +48,6 @@ export default async function handler(req,res) {
 
   res.json({
     url:session.url,
-  })
+  });
 
 }
